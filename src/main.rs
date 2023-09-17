@@ -2,7 +2,6 @@ use std::{
     fs,
     io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
-    thread,
 };
 
 use rust_server::ThreadPool;
@@ -39,6 +38,6 @@ fn handle_connection(mut stream: TcpStream) {
         "{}\r\nContent-Length: {}\r\n\r\n{}",
         status_line, len, contents
     );
-    stream.write(response.as_bytes()).unwrap();
-    // stream.flush().unwrap();
+    stream.write_all(response.as_bytes()).unwrap();
+    stream.flush().unwrap();
 }

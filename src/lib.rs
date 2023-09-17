@@ -8,7 +8,7 @@ pub struct ThreadPool {
     sender: Option<mpsc::Sender<Job>>,
 }
 
-pub struct Worker {
+struct Worker {
     id: usize,
     thread: Option<thread::JoinHandle<()>>,
 }
